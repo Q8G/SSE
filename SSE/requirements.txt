@@ -1,1 +1,7 @@
-
+requests
+webbrowser
+pywin32
+wmi
+psutil
+pyqt5
+uuid
