@@ -78,7 +78,7 @@ Address :
 C:\WINDOWS\system32> cd C:\Tool folder...
 ```
 ```
-C:\WINDOWS\system32> Run.bat
+C:\WINDOWS\system32> Install.bat
 ```
 
 **Manually :**
@@ -86,7 +86,7 @@ C:\WINDOWS\system32> Run.bat
 Open Tool Folder
 ```
 ```
-Run the Run.bat file
+Run the Install.bat file
 ```
 
 
