@@ -1,4 +1,4 @@
-import requests, webbrowser, cpuinfo, subprocess, socket, wmi, psutil, platform, uuid, re, os, sys, json
+import requests, webbrowser, subprocess, socket, wmi, psutil, platform, uuid, re, os, sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QFrame, QTextEdit
 from PyQt5.QtGui import QPixmap, QCursor, QFontDatabase, QFont, QIcon
 from PyQt5.QtCore import Qt, QTimer
@@ -1073,7 +1073,7 @@ try:
         buttondi.setEnabled(True)
         buttondi.setCursor(button_cursor)
         buttoncw.setEnabled(True)
-        buttoncw.setCursor(button_cursor)
+        buttoncw.setCursor(button_cursor)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                #  @9omw
         buttondcs.setEnabled(True)
         buttondcs.setCursor(button_cursor)
         buttondcA.setEnabled(True)
