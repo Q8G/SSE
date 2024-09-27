@@ -74,10 +74,10 @@ Address :
 
 
 **IN Windows CMD :**
-```
+```bash
 C:\WINDOWS\system32> cd C:\Tool folder...
 ```
-```
+```bash
 C:\WINDOWS\system32> Install.bat
 ```
 
