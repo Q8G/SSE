@@ -2,7 +2,6 @@ import requests, webbrowser, subprocess, socket, wmi, psutil, platform, uuid, re
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QFrame, QTextEdit
 from PyQt5.QtGui import QPixmap, QCursor, QFontDatabase, QFont, QIcon
 from PyQt5.QtCore import Qt, QTimer
-
 destination_pathcurs = f'C:\\SSE\\Images\\1.png'
 destination_pathcurs1 = f'C:\\SSE\\Images\\2.png'
 destination_path3 = f'C:\\SSE\\Images\\3.png'
@@ -18,11 +17,116 @@ destination_path41cy1 = f'C:\\SSE\\Images\\11.png'
 destination_path42 = f'C:\\SSE\\Images\\12.png'
 destination_pathcurs11 = f'C:\\SSE\\Images\\13.png'
 destination_pathcurs11c = f'C:\\SSE\\Images\\14.png'
+def nonet():
+    app = QApplication(sys.argv)
+    window = QWidget()
+    window.setWindowFlag(Qt.FramelessWindowHint)
+    window.setWindowTitle('SSE > There is no internet connection')
+    window.setAttribute(Qt.WA_TranslucentBackground)
+    window.setFixedSize(460, 260)
+    class move(QLabel):
+        def __init__(self, parent):
+            super().__init__(parent)
+            self.draggable = False
+            self.offset = None
+        def mousePressEvent(self, event):
+            if event.button() == Qt.LeftButton:
+                self.draggable = True
+                self.offset = event.pos()
+        def mouseMoveEvent(self, event):
+            if self.draggable:
+                self.parent().move(event.globalPos() - self.offset)
+        def mouseReleaseEvent(self, event):
+            if event.button() == Qt.LeftButton:
+                self.draggable = False
+                self.offset = None
+    def exi():
+        window.close()
+        sys.exit()
+    square5 = QFrame(window)
+    square5.setGeometry(10, 10, 450, 250)
+    square5.setStyleSheet("background: rgba(0, 0, 0, 0.2); border-radius: 20px; ")
+    square3 = QFrame(window)
+    square3.setGeometry(0, 0, 450, 250)
+    square3.setStyleSheet("background: #1a1a1a; border-radius: 20px; ")
+    square7 = QFrame(window)
+    square7.setGeometry(0, 0, 450, 40)
+    gradient = "qlineargradient(x1:0, y1:0, x2:1, y2:0, " \
+            "stop:0 #2b2b2b, " \
+            "stop:0.5 #1d1d1d, " \
+            "stop:1 #2b2b2b)"
+    square7.setStyleSheet(f"background: {gradient}; " \
+                        "border-top-left-radius: 20px; " \
+                        "border-top-right-radius: 20px;")
+    gradient = "qlineargradient(x1:0, y1:0, x2:1, y2:0, " \
+            "stop:0 #1b1b1b, " \
+            "stop:0.5 #cfcfcf, " \
+            "stop:1 #1b1b1b)"
+    square8 = QFrame(window)
+    square8.setGeometry(0, 40, 450, 2)
+    square8.setStyleSheet(f"background: {gradient}; " \
+                        "border-top-left-radius: 20px; " \
+                        "border-top-right-radius: 20px;")
+    gradient = "qlineargradient(x1:0, y1:0, x2:1, y2:0, " \
+            "stop:0 #2b2b2b, " \
+            "stop:1 #1d1d1d)"
+    Title1 = QLabel("You will not be able to run the program properly\nwithout the Internet", window)
+    Title1.setGeometry(19, 64, 410, 75)
+    font = Title1.font()
+    font.setPointSize(16)
+    font.setFamily("Arial")
+    Title1.setFont(font) 
+    Title1.setStyleSheet(f"color: #fff; font-size: 14px; font-weight: 900; background: {gradient}; border-radius: 10px; padding: 10px;")
+    gradient = "qlineargradient(x1:0, y1:0, x2:1, y2:0, " \
+            "stop:0 #1b1b1b, " \
+            "stop:0.5 #6b6b6b, " \
+            "stop:1 #1b1b1b)"
+    square8f = QFrame(window)
+    square8f.setGeometry(20, 159, 410, 2)
+    square8f.setStyleSheet(f"background: {gradient}; " \
+                        "border-top-left-radius: 20px; " \
+                        "border-top-right-radius: 20px;")
+    bar = move(window)
+    bar.setGeometry(0, 0, 1000, 40)
+    button1 = QPushButton("Exit", window)
+    button1.setGeometry(180, 185, 90, 35)
+    button1.clicked.connect(exi)
+    font = button1.font()
+    font.setPointSize(16)
+    font.setFamily("Arial")
+    button1.setFont(font) 
+    button1.setStyleSheet("""
+        QPushButton {
+            background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #2b2b2b, stop:1 #1d1d1d);
+            color: white;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 2px 2px;
+            font-weight: 900;
+        }
+        QPushButton:hover {
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #292929, stop:1 #1a1a1a);
+        }
+        QPushButton:pressed {
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #222222, stop:1 #161616);
+        }
+    """)
+    desktop = app.desktop()
+    screen = desktop.screenGeometry()
+    x = (screen.width() - window.width()) // 2
+    y = (screen.height() - window.height()) // 2
+    window.move(x, y)
+    window.show()
+    sys.exit(app.exec_())
 try:
-    cmd = "netsh wlan show interfaces"
-    connected_network = subprocess.check_output(cmd, shell=True)
-    ssid_line = re.search(b"SSID\\s+:\\s(.+)", connected_network)
-    if ssid_line:
+    url = 'http://www.google.com'
+    timeout = 5
+
+    try:
+        response = requests.get(url, timeout=timeout)
+        if not response.status_code == 200:
+            nonet()
         def get_isp():
             try:
                 response = requests.get('https://ipinfo.io/json')
@@ -38,10 +142,8 @@ try:
                 isp_name = f"ISP Name: {isp_name}\n"
             else:
                 isp_name = "Failed to retrieve ISP name.\n"
-            cmd = "netsh wlan show interfaces"
-            connected_network = subprocess.check_output(cmd, shell=True)
-            ssid_line = re.search(b"SSID\\s+:\\s(.+)", connected_network)
-            if ssid_line:
+            response = requests.get(url, timeout=timeout)
+            if response.status_code == 200:
                 ssid = ssid_line.group(1).decode().strip()
                 cmd = f"netsh wlan show profile \"{ssid}\" key=clear"
                 try:
@@ -1383,119 +1485,9 @@ try:
         window.move(x, y)
         window.show()
         sys.exit(app.exec_())
-    else:
-        app = QApplication(sys.argv)
-        window = QWidget()
-        window.setWindowFlag(Qt.FramelessWindowHint)
-        window.setWindowTitle('SSE > There is no internet connection')
-        window.setAttribute(Qt.WA_TranslucentBackground)
-        window.setFixedSize(460, 260)
-        class move(QLabel):
-            def __init__(self, parent):
-                super().__init__(parent)
-                self.draggable = False
-                self.offset = None
-            def mousePressEvent(self, event):
-                if event.button() == Qt.LeftButton:
-                    self.draggable = True
-                    self.offset = event.pos()
-            def mouseMoveEvent(self, event):
-                if self.draggable:
-                    self.parent().move(event.globalPos() - self.offset)
-            def mouseReleaseEvent(self, event):
-                if event.button() == Qt.LeftButton:
-                    self.draggable = False
-                    self.offset = None
-        def exi():
-            window.close()
-            sys.exit()
-        def settings():
-            Title1.setGeometry(295, 187, 410, 75)
-            Title2.setGeometry(392, 207, 410, 75)
-            button1h.setGeometry(392, 237, 30, 15)
-            square8f.setGeometry(295, 280, 410, 2)
-            image_label121111155.setGeometry(509, 310, 35, 35)
-            image_label1211111s66.setGeometry(429, 288, 80, 80)
-            button241.setGeometry(453, 310, 35, 35)
-            button2411.setGeometry(508, 310, 40, 35)
-        square5 = QFrame(window)
-        square5.setGeometry(10, 10, 450, 250)
-        square5.setStyleSheet("background: rgba(0, 0, 0, 0.2); border-radius: 20px; ")
-        square3 = QFrame(window)
-        square3.setGeometry(0, 0, 450, 250)
-        square3.setStyleSheet("background: #1a1a1a; border-radius: 20px; ")
-        square7 = QFrame(window)
-        square7.setGeometry(0, 0, 450, 40)
-        gradient = "qlineargradient(x1:0, y1:0, x2:1, y2:0, " \
-                "stop:0 #2b2b2b, " \
-                "stop:0.5 #1d1d1d, " \
-                "stop:1 #2b2b2b)"
-        square7.setStyleSheet(f"background: {gradient}; " \
-                            "border-top-left-radius: 20px; " \
-                            "border-top-right-radius: 20px;")
-        gradient = "qlineargradient(x1:0, y1:0, x2:1, y2:0, " \
-                "stop:0 #1b1b1b, " \
-                "stop:0.5 #cfcfcf, " \
-                "stop:1 #1b1b1b)"
-        square8 = QFrame(window)
-        square8.setGeometry(0, 40, 450, 2)
-        square8.setStyleSheet(f"background: {gradient}; " \
-                            "border-top-left-radius: 20px; " \
-                            "border-top-right-radius: 20px;")
-        gradient = "qlineargradient(x1:0, y1:0, x2:1, y2:0, " \
-                "stop:0 #2b2b2b, " \
-                "stop:1 #1d1d1d)"
-        Title1 = QLabel("You will not be able to run the program properly\nwithout the Internet", window)
-        Title1.setGeometry(19, 64, 410, 75)
-        font = Title1.font()
-        font.setPointSize(16)
-        font.setFamily("Arial")
-        Title1.setFont(font) 
-        Title1.setStyleSheet(f"color: #fff; font-size: 14px; font-weight: 900; background: {gradient}; border-radius: 10px; padding: 10px;")
-        gradient = "qlineargradient(x1:0, y1:0, x2:1, y2:0, " \
-                "stop:0 #1b1b1b, " \
-                "stop:0.5 #6b6b6b, " \
-                "stop:1 #1b1b1b)"
-        square8f = QFrame(window)
-        square8f.setGeometry(20, 159, 410, 2)
-        square8f.setStyleSheet(f"background: {gradient}; " \
-                            "border-top-left-radius: 20px; " \
-                            "border-top-right-radius: 20px;")
-        bar = move(window)
-        bar.setGeometry(0, 0, 1000, 40)
-        button1 = QPushButton("Exit", window)
-        button1.setGeometry(180, 185, 90, 35)
-        button1.clicked.connect(exi)
-        font = button1.font()
-        font.setPointSize(16)
-        font.setFamily("Arial")
-        button1.setFont(font) 
-        button1.setStyleSheet("""
-            QPushButton {
-                background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #2b2b2b, stop:1 #1d1d1d);
-                color: white;
-                font-size: 16px;
-                border: 2px solid transparent;
-                border-radius: 10px;
-                padding: 2px 2px;
-                font-weight: 900;
-            }
-            QPushButton:hover {
-                background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #292929, stop:1 #1a1a1a);
-            }
-            QPushButton:pressed {
-                background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #222222, stop:1 #161616);
-            }
-        """)
-        desktop = app.desktop()
-        screen = desktop.screenGeometry()
-        x = (screen.width() - window.width()) // 2
-        y = (screen.height() - window.height()) // 2
-        window.move(x, y)
-        window.show()
-        sys.exit(app.exec_())
+    except requests.ConnectionError:
+        nonet()
 except Exception as e:
-    print(e)
     app = QApplication(sys.argv)
     window = QWidget()
     window.setWindowFlag(Qt.FramelessWindowHint)
