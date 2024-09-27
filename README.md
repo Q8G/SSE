@@ -90,6 +90,6 @@ Run the Install.bat file
 ```
 
 
-## **Image of a Code** 📸
+## **Image of a Tool** 📸
 
 ![App Screenshot](https://i.postimg.cc/X7HqyTtr/image.png)
